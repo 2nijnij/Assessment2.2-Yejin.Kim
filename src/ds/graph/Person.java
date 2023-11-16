@@ -13,7 +13,7 @@ public class Person {
 	private ArrayList<Person> contacts;
 
 
-//Constructor for initializing a Person object
+// Constructor for initializing a Person object
 
 	
 	public Person(String name, int age, float socialHygine) {
@@ -21,6 +21,35 @@ public class Person {
 		this.age = age;
 		this.socialHygiene = socialHygiene;
 		this.contacts = new ArrayList<>();
+	}
+	
+// Accessor and Mutator	
+	public float getSocialHygiene() {
+		return socialHygiene;
+	}
+	
+	public void setSocialHygiene(float socialHygiene) {
+		this.socialHygiene = socialHygiene;
+	}
+	
+	public int getAge() {
+		return age;
+	}
+	
+	public void setAge(int age) {
+		this.age = age;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public ArrayList<Person> getContacts() {
+		return contacts;
 	}
 	
 }
