@@ -16,7 +16,12 @@ public class Person {
 
 // Constructor for initializing a Person object
 
-	
+	/**
+	 * 
+	 * @param name
+	 * @param age
+	 * @param socialHygine
+	 */
 	public Person(String name, int age, float socialHygine) {
 		this.name = name;
 		this.age = age;
