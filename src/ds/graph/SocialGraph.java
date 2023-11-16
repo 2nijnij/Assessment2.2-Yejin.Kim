@@ -2,10 +2,12 @@ package ds.graph;
 
 import java.util.ArrayList;
 
+// Attributes - a list to store all the vertices in this graph
 public class SocialGraph {
+	private ArrayList<Person> vertices;
 	
 	public SocialGraph() {
-		
+		vertices = new ArrayList<>();
 	}
 	
 	/**
