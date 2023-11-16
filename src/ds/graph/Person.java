@@ -1,6 +1,7 @@
 package ds.graph;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /*
  * This person class have to represent an individual in a social graph
@@ -70,5 +71,13 @@ public class Person {
 */	
 	public float getInfectiveness() {
 		return (age/100f)-(socialHygiene *(age/100f));
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Person person = (Person) o;
+		return Objects.eqauls(name, person.name);
 	}
 }
