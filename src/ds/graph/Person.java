@@ -88,4 +88,9 @@ public class Person {
 		return Objects.hash(name);
 	}
 	
+	// Override toString method
+	@Override
+	public String toString() {
+		return "Person: " + name + ", " + age + ", Contacts: " + contacts.size();
+	}
 }
