@@ -52,4 +52,11 @@ public class Person {
 		return contacts;
 	}
 	
+// Method for adding a contact
+	
+	public void addContact(Person person) {
+		if (person != null && !contacts.contains(person)) {
+			contacts.add(person);
+		}
+	}
 }
