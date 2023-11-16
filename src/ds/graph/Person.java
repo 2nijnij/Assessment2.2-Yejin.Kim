@@ -73,6 +73,7 @@ public class Person {
 		return (age/100f)-(socialHygiene *(age/100f));
 	}
 	
+	// Override equals method
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -80,4 +81,11 @@ public class Person {
 		Person person = (Person) o;
 		return Objects.equals(name, person.name);
 	}
+	
+	// Override hashCode method
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
+	}
+	
 }
