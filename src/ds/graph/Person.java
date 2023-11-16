@@ -11,12 +11,16 @@ public class Person {
 	private int age;
 	private String name;
 	private ArrayList<Person> contacts;
-}
 
-public class Person {
+
+//Constructor for initializing a Person object
+
 	
 	public Person(String name, int age, float socialHygine) {
-		
+		this.name = name;
+		this.age = age;
+		this.socialHygiene = socialHygiene;
+		this.contacts = new ArrayList<>();
 	}
 	
 }
