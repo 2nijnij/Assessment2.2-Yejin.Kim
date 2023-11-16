@@ -64,4 +64,11 @@ public class Person {
 	public void removeContact(Person person) {
 		contacts.remove(person);
 	}
+	
+/* Calculate the infectiveness for person
+ * Return the calculated value of infectiveness
+*/	
+	public float getInfectiveness() {
+		return (age/100f)-(socialHygiene *(age/100f));
+	}
 }
