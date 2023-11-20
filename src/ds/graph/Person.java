@@ -12,6 +12,8 @@ public class Person {
 	private int age;
 	private String name;
 	private ArrayList<Person> contacts;
+	// Destination business
+	private Business business;
 
 
 // Constructor for initializing a Person object
@@ -98,4 +100,13 @@ public class Person {
 	public String toString() {
 		return "Person: " + name + ", " + age + ", Contacts: " + contacts.size();
 	}
+	
+    /**
+     * Sets the destination business for this person.
+     *
+     * @param bus The business to set as the destination.
+     */
+    public void setBusiness(Business bus) {
+        this.business = bus;
+    }
 }
