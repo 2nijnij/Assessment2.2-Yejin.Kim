@@ -29,5 +29,14 @@ public class Business {
             edges.put(dest, route);
         }
     }
+    
+    /**
+     * Removes an edge to a specified Business.
+     * 
+     * @param dest The destination Business to remove the edge to.
+     */
+    public void removeEdge(Business dest) {
+        edges.remove(dest);
+    }
 
 }
