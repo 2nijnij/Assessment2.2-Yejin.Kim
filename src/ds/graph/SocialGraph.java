@@ -74,12 +74,21 @@ public class SocialGraph {
 	 * Remove the edge between the given People from the graph. 
 	 * If no edge existed between these people, this method should throw an EdgeDoesNotExist exception. 
 	 * 
-	 * @throws EdgeDoesNotExist
-	 * @param a
-	 * @param b
+	 * @throws EEdgeDoesNotExist If no edge exists between the given people.dgeDoesNotExist
+	 * @param a The first person.
+	 * @param b The second person.
 	 */
-	public void removeEdge(Person a, Person b) {
-		
+	public void removeEdge(Person a, Person b) throws EdgeDoesNotExist {
+        if (a == null || b == null || !vertices.contains(a) || !vertices.contains(b)) {
+            throw new EdgeDoesNotExist("One or both persons are not in the graph.");
+        }
+
+        if (!a.getContacts().contains(b) || !b.getContacts().contains(a)) {
+            throw new EdgeDoesNotExist("No edge exists between the specified persons.");
+        }
+
+        a.removeContact(b);
+        b.removeContact(a);
 	}
 	
 	/**
