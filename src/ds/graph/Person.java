@@ -98,7 +98,9 @@ public class Person {
 	// Override toString method
 	@Override
 	public String toString() {
-		return "Person: " + name + ", " + age + ", Contacts: " + contacts.size();
+		 String businessName = (business != null) ? business.getName() : "No Business Set";
+	        return "Person: " + name + ", Age: " + age + ", Social Hygiene: " + socialHygiene 
+	               + ", Contacts: " + contacts.size() + ", Business: " + businessName;
 	}
 	
     /**

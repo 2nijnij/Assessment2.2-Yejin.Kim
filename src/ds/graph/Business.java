@@ -38,5 +38,13 @@ public class Business {
     public void removeEdge(Business dest) {
         edges.remove(dest);
     }
-
+    
+    // Getters and setters
+    public String getName() {
+    	return name;
+    }
+    
+    public Map<Business, Person> getEdges() {
+    	return edges;
+    }
 }
