@@ -16,5 +16,16 @@ public class BusinessGraph {
 			vertices.add(bus);
 		}
 	}
+	
+	public void removeVertex(Business bus) throws IllegalArgumentException {
+		if (bus == null || !vertices.contains(bus)) {
+			throw new IllegalArgumentException("Business does not exist in the graph");
+		}
+		vertices.remove(bus);
+		// Remove all edges associated with this business
+		for (Business b : vertices) {
+			b.removeEdge(bus);
+		}
+	}
 }
 
