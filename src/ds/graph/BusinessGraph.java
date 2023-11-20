@@ -77,7 +77,40 @@ public class BusinessGraph {
 		            }
 		        }
 		    }
-
 		}
+		    
+		public boolean isStronglyConnected(Business start) throws IllegalArgumentException {
+		    if (start == null || !vertices.contains(start)) {
+		        throw new IllegalArgumentException("Start business does not exist in the graph.");
+		    }
+
+		    // Check if all vertices are reachable from start
+		    Set<Business> visited = new HashSet<>();
+		    dfs(start, visited);
+		    if (visited.size() != vertices.size()) {
+		        return false;
+		    }
+
+		    // Check if start is reachable from all vertices
+		    for (Business business : vertices) {
+		        visited.clear();
+		        dfs(business, visited);
+		        if (!visited.contains(start)) {
+		            return false;
+		        }
+		    }
+
+		    return true;
+			}
+		
+		private void dfs(Business current, Set<Business> visited) {
+		    visited.add(current);
+		    for (Person person : current.getEdges().values()) {
+		        Business nextBusiness = person.getBusiness();
+		        if (nextBusiness != null && !visited.contains(nextBusiness)) {
+		            dfs(nextBusiness, visited);
+		       }
+		   }
+	}
 }
 
