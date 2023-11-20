@@ -185,13 +185,36 @@ public class SocialGraph {
 	 * This method should consider the graph unweighted: the order that the Persons are stored inside the contacts list will
 	 * determine the order that the DFS operates. 
  	 * @throws PersonDoesNotExist if either start or target are not in the graph. 	
-	 * @param start
-	 * @param target
+	 * @param start The starting person.
+	 * @param target The target person.
 	 * @return A list of nodes that must be traversed to get to target, from start. 
 	 */
-	public ArrayList<Person> searchDFS(Person start, Person target) {
-		return null;
-	}
+	public ArrayList<Person> searchDFS(Person start, Person target) throws PersonDoesNotExist {
+		if (!vertices.contains(start) || !vertices.contains(target)) {
+            throw new PersonDoesNotExist("Either start or target person does not exist in the graph.");
+        }
+
+        Set<Person> visited = new HashSet<>();
+        Map<Person, Person> predecessors = new HashMap<>();
+        dfsHelper(start, target, visited, predecessors);
+
+        if (!predecessors.containsKey(target)) {
+            return new ArrayList<>(); // Return an empty path if target is not found
+        }
+
+        return reconstructPath(predecessors, target);
+    }
+
+    private void dfsHelper(Person current, Person target, Set<Person> visited, Map<Person, Person> predecessors) {
+        visited.add(current);
+
+        for (Person contact : current.getContacts()) {
+            if (!visited.contains(contact)) {
+                predecessors.put(contact, current);
+                dfsHelper(contact, target, visited, predecessors);
+            }
+        }
+    }
 	
 	/**
 	 * Implement a depth-first search, from Person start to target.  
