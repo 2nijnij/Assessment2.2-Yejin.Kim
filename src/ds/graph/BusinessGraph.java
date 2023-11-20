@@ -50,5 +50,34 @@ public class BusinessGraph {
 		    }
 		    return infectedCount;
 	}
+		public int minStepsToDestFromStart(Business start, Business dest) throws IllegalArgumentException {
+		    if (start == null || dest == null || !vertices.contains(start) || !vertices.contains(dest)) {
+		        throw new IllegalArgumentException("Start or destination business does not exist in the graph.");
+		    }
+
+		    Map<Business, Integer> stepsMap = new HashMap<>();
+		    dfsMinSteps(start, dest, stepsMap, 0);
+		    return stepsMap.getOrDefault(dest, -1);
+		}
+		
+		
+		// use a modified DFS to reach the destination from the starting business
+		private void dfsMinSteps(Business current, Business dest, Map<Business, Integer> stepsMap, int currentSteps) {
+		    if (!stepsMap.containsKey(current) || stepsMap.get(current) > currentSteps) {
+		        stepsMap.put(current, currentSteps);
+
+		        if (current.equals(dest)) {
+		            return;
+		        }
+
+		        for (Person person : current.getEdges().values()) {
+		            Business nextBusiness = person.getBusiness();
+		            if (nextBusiness != null) {
+		                dfsMinSteps(nextBusiness, dest, stepsMap, currentSteps + 1);
+		            }
+		        }
+		    }
+
+		}
 }
 
