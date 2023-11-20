@@ -27,5 +27,28 @@ public class BusinessGraph {
 			b.removeEdge(bus);
 		}
 	}
+		public int totalPersonsInfected(Business start) throws IllegalArgumentException {
+		    if (start == null || !vertices.contains(start)) {
+		        throw new IllegalArgumentException("Start business does not exist in the graph.");
+		    }
+		    Set<Business> visited = new HashSet<>();
+		    Queue<Business> queue = new LinkedList<>();
+		    queue.add(start);
+		    visited.add(start);
+
+		    int infectedCount = 0;
+		    while (!queue.isEmpty()) {
+		        Business current = queue.poll();
+		        for (Person person : current.getEdges().values()) {
+		            infectedCount++;
+		            Business nextBusiness = person.getBusiness();
+		            if (nextBusiness != null && !visited.contains(nextBusiness)) {
+		                queue.add(nextBusiness);
+		                visited.add(nextBusiness);
+		            }
+		        }
+		    }
+		    return infectedCount;
+	}
 }
 
