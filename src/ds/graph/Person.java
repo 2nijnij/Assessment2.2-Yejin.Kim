@@ -109,4 +109,14 @@ public class Person {
     public void setBusiness(Business bus) {
         this.business = bus;
     }
+    
+    /**
+     * Gets the destination business for this person.
+     *
+     * @return The destination business.
+     */
+    public Business getBusiness() {
+        return business;
+    }
+
 }
