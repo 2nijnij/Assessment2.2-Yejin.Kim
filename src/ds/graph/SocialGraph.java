@@ -1,6 +1,7 @@
 package ds.graph;
 
 import java.util.ArrayList;
+import java.util.*;
 
 // Attributes - a list to store all the vertices in this graph
 public class SocialGraph {
@@ -10,6 +11,7 @@ public class SocialGraph {
 		vertices = new ArrayList<>();
 	}
 	
+
 	/**
 	 * Add the given person to the graph. The person needs to be added to the list of vertices.
 	 * 
@@ -91,18 +93,54 @@ public class SocialGraph {
         b.removeContact(a);
 	}
 	
+	
 	/**
 	 * Implement a breadth-first search, from Person start to target. 
 	 * This method should consider the graph unweighted: the order that the Persons are stored inside the contacts list will
 	 * determine the order that the BFS operates. 
 	 * 
-	 * @throws PersonDoesNotExist if either start or target are not in the graph. 
-	 * @param start
-	 * @param target
+     * @throws PersonDoesNotExist if either start or target are not in the graph.
+	 * @param start The starting person.
+	 * @param target The target person.
 	 * @return A list of nodes that must be traversed to get to target, from start. 
 	 */
-	public ArrayList<Person> searchBFS(Person start, Person target) {
-		return null;
+	public ArrayList<Person> searchBFS(Person start, Person target) throws PersonDoesNotExist {
+        if (!vertices.contains(start) || !vertices.contains(target)) {
+            throw new PersonDoesNotExist("Either start or target person does not exist in the graph.");
+        }
+
+        Queue<Person> queue = new LinkedList<>();
+        Map<Person, Person> predecessors = new HashMap<>();
+        queue.add(start);
+        predecessors.put(start, null);
+
+        while (!queue.isEmpty()) {
+            Person current = queue.poll();
+
+            if (current.equals(target)) {
+                return reconstructPath(predecessors, target);
+            }
+
+            for (Person contact : current.getContacts()) {
+                if (!predecessors.containsKey(contact)) {
+                    queue.add(contact);
+                    predecessors.put(contact, current);
+                }
+            }
+        }
+        
+        // Return an empty path, if target is not found
+        return new ArrayList<>();
+	}
+	
+	// Create method to reconstruct the path from start to target
+	private ArrayList<Person> reconstructPath(Map<Person, Person> predecessors, Person target) {
+		ArrayList<Person> path = new ArrayList<>();
+		for (Person at = target; at != null; at = predecessors.get(at)) {
+			path.add(at);
+		}
+		Collections.reverse(path);
+		return path;
 	}
 	
 	/**
