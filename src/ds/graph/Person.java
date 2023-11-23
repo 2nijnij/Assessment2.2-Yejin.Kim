@@ -24,7 +24,7 @@ public class Person {
 	 * @param age
 	 * @param socialHygine
 	 */
-	public Person(String name, int age, float socialHygine) {
+	public Person(String name, int age, float socialHygiene) {
 		this.name = name;
 		this.age = age;
 		this.socialHygiene = socialHygiene;
