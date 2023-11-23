@@ -10,6 +10,9 @@ public class Business {
 	private Map<Business, Person> edges;
 	
 	public Business(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Business name cannot be null or empty.");
+        }
 		this.name = name;
 		this.edges = new HashMap<>();
 	}
@@ -21,11 +24,18 @@ public class Business {
      * @param dest The destination Business.
      * @param route The Person representing the edge.
      */
+	
     public void addEdge(Business dest, Person route) {
-        if (dest == null || route == null) return;
+        if (dest == null || route == null) {
+            throw new IllegalArgumentException("Destination business and route cannot be null.");
+        }
+
+        if (this.equals(dest)) {
+            throw new IllegalArgumentException("Cannot add an edge to the same business.");
+        }
 
         Person existingRoute = edges.get(dest);
-        if (existingRoute == null || route.getInfectiveness() > existingRoute.getInfectiveness()) {
+        if (existingRoute == null || route.getInfectiveness() >= existingRoute.getInfectiveness()) {
             edges.put(dest, route);
         }
     }
@@ -36,10 +46,14 @@ public class Business {
      * @param dest The destination Business to remove the edge to.
      */
     public void removeEdge(Business dest) {
+        if (dest == null) {
+            throw new IllegalArgumentException("Destination business cannot be null.");
+        }
+
         edges.remove(dest);
     }
     
-    // Getters and setters
+    // Getters and settersad
     public String getName() {
     	return name;
     }
