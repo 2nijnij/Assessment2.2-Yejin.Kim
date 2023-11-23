@@ -14,7 +14,7 @@ public class SocialGraph {
 	/**
 	 * Add the given person to the graph. The person needs to be added to the list of vertices.
 	 * 
-	 * @param p
+	 * @param p The person to add
 	 * @throws PersonAlreadyExists If the person is already present in the graph, 
 	 *  		this method should throw a PersonAlreadyPresent exception. 
 	 */
