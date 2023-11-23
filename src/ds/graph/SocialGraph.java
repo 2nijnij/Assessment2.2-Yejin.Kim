@@ -66,7 +66,7 @@ public class SocialGraph {
 		
 		if (!alreadyExists) {
 			a.addContact(b);
-			b.addContact(b);
+			b.addContact(a);
 		}
 		
 		return alreadyExists;
