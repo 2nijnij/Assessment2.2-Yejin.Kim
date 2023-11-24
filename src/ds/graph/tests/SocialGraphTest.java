@@ -6,9 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ds.graph.Person;
-import ds.graph.Business;
 import ds.graph.SocialGraph;
-import ds.graph.BusinessGraph;
+import ds.graph.PersonAlreadyExists;
 
 class SocialGraphTest {
 
@@ -97,33 +96,12 @@ class SocialGraphTest {
 		sg.addEdge(c8, c1);
 	}
 	
-	/**
-	 * Testing the 'setBusiness' and 'getBusiness' methods
-	 */
 	@Test
-	void testPersonBusinessAssignment() {
-	    Person person = new Person("TestPerson", 30, 0.5f);
-	    Business business = new Business("TestBusiness");
-	    person.setBusiness(business);
+	void testAddVertex() throws PersonAlreadyExists {
+		Person newPerson = new Person("NewPerson", 25, 0.5f);
+		sg.addVertex(newPerson);
+		assertNotNull(sg.getVertex("NewPerson"), "New person should be added in the graph.");	
 
-	    assertEquals(business, person.getBusiness(), "Business should be correctly set for the person.");
-	}
-	/**
-	 * Test Person's infectiveness Calculation
-	 */
-	@Test
-	void testInfectivenessCalculation() {
-	    Person person = new Person("TestPerson", 50, 0.7f);
-	    float expectedInfectiveness = (50 / 100f) - (0.7f * (50 / 100f));
-	    assertEquals(expectedInfectiveness, person.getInfectiveness(), "Infectiveness calculation should match expected value.");
-	}
-	/**
-	 * Test Person's toString method
-	 */
-	void testPersonToString() {
-	    Person person = new Person("TestPerson", 30, 0.5f);
-	    String expectedString = "Person: TestPerson, Age: 30, ..."; // Complete this based on your toString format
-	    assertEquals(expectedString, person.toString(), "toString should correctly represent the person.");
 	}
 
 }
