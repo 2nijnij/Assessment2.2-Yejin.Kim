@@ -10,6 +10,12 @@ public class PersonTest {
 	
 	@BeforeEach
 	void setUp() {
-		person = new Person("Ashley", 30, 0.8f);s
+		person = new Person("Ashley", 30, 0.8f);
 	}
+	@Test
+	void testGetName() {
+	    assertEquals("Ashley", person.getName(), "Name should be Alice.");
+	}
+	
+	
 }
