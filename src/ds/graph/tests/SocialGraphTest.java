@@ -120,7 +120,8 @@ class SocialGraphTest {
 	
 	@Test
 	void testAddEdge() throws PersonDoesNotExist, PersonAlreadyExists {
-        Person a = new Person("UniquePersonA", 30, 0.5f);
+        // set Person who are not added in setUp
+		Person a = new Person("UniquePersonA", 30, 0.5f);
         Person b = new Person("UniquePersonB", 35, 0.6f);
 		sg.addVertex(a);
 		sg.addVertex(b);
@@ -132,7 +133,8 @@ class SocialGraphTest {
 	
 	@Test
 	void testRemoveEdge() throws PersonDoesNotExist, EdgeDoesNotExist, PersonAlreadyExists {
-        Person a = new Person("UniquePersonA", 30, 0.5f);
+		// set Person who are not added in setUp
+		Person a = new Person("UniquePersonA", 30, 0.5f);
         Person b = new Person("UniquePersonB", 35, 0.6f);
 		sg.addVertex(a);
 		sg.addVertex(b);
@@ -144,6 +146,7 @@ class SocialGraphTest {
 	
 	@Test
 	void testSearchBFS() throws PersonDoesNotExist {
+		// Choose Alice as a  start and Aaron as a target person for BFS
 		Person start = sg.getVertex("Alice");
 		Person target = sg.getVertex("Aaron");	
 		
@@ -154,6 +157,7 @@ class SocialGraphTest {
 	
 	@Test
 	void testSearchDFS() throws PersonDoesNotExist {
+		// Choose Alice as a  start and Aaron as a target person for BFS
 		Person start = sg.getVertex("Alice");
 		Person target = sg.getVertex("Aaron");	
 		
