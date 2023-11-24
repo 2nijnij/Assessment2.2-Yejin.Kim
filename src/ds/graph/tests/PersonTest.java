@@ -17,5 +17,11 @@ public class PersonTest {
 	    assertEquals("Ashley", person.getName(), "Name should be Alice.");
 	}
 	
+    @Test
+    void testSetName() {
+        person.setName("Bob");
+        assertEquals("Bob", person.getName(), "Name should be updated to Bob.");
+    }
+
 	
 }
