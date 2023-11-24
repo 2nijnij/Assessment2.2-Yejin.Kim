@@ -63,26 +63,28 @@ public class BusinessGraph {
 		
 		// use a modified DFS to reach the destination from the starting business
 		private void dfsMinSteps(Business current, Business dest, Map<Business, Integer> stepsMap, int currentSteps) {
-		    // Check if the current business is the destination
+		    System.out.println("Visiting: " + current.getName() + ", Steps: " + currentSteps);
+
 		    if (current.equals(dest)) {
 		        stepsMap.put(dest, currentSteps);
+		        System.out.println("Reached destination: " + dest.getName());
 		        return;
 		    }
 
-		    // If this is the first time visiting the business or a shorter path is found
 		    if (!stepsMap.containsKey(current) || stepsMap.get(current) > currentSteps) {
 		        stepsMap.put(current, currentSteps);
 
-		        // Traverse the connected businesses
 		        for (Person person : current.getEdges().values()) {
 		            Business nextBusiness = person.getBusiness();
+		            System.out.println("Next: " + (nextBusiness != null ? nextBusiness.getName() : "null"));
+
 		            if (nextBusiness != null && (!stepsMap.containsKey(nextBusiness) || stepsMap.get(nextBusiness) > currentSteps + 1)) {
 		                dfsMinSteps(nextBusiness, dest, stepsMap, currentSteps + 1);
 		            }
 		        }
 		    }
 		}
-		
+
 		/**
 	     * Checks if a business is present in the graph.
 	     * 

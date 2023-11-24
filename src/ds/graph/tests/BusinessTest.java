@@ -49,4 +49,5 @@ public class BusinessTest {
 		assertEquals(1, business.getEdges().size(), "Edges map should contain one entry.");
 		
 	}
+	
 }
