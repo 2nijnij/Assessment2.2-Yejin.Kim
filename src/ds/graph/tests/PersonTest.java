@@ -58,6 +58,15 @@ public class PersonTest {
         person.addContact(contact);
         person.removeContact(contact);
         assertFalse(person.getContacts().contains(contact), "Charlie should be removed from contacts.");
-    } d
+    }
+    
+    @Test
+    void testInfectivenessCalculation() {
+        float expectedInfectiveness = (30 / 100f) - (0.8f * (30 / 100f));
+        assertEquals(expectedInfectiveness, person.getInfectiveness(), 0.01, 
+                     "Infectiveness should be calculated correctly.");
+    }
+
+
     
 }
