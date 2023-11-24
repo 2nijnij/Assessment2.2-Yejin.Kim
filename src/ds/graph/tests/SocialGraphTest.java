@@ -2,12 +2,17 @@ package ds.graph.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ds.graph.EdgeDoesNotExist;
 import ds.graph.Person;
 import ds.graph.SocialGraph;
 import ds.graph.PersonAlreadyExists;
+import ds.graph.PersonDoesNotExist;
+
 
 class SocialGraphTest {
 
@@ -113,5 +118,56 @@ class SocialGraphTest {
 		}, "Adding a duplicate person should throw PersonAlreadyExists exception.");
 	}
 	
+	@Test
+	void testAddEdge() throws PersonDoesNotExist, PersonAlreadyExists {
+        Person a = new Person("UniquePersonA", 30, 0.5f);
+        Person b = new Person("UniquePersonB", 35, 0.6f);
+		sg.addVertex(a);
+		sg.addVertex(b);
+		sg.addEdge(a, b);
+		
+		assertTrue(a.getContacts().contains(b) && b.getContacts().contains(a), "Edge should be added between UniquePersonA and UniquePersonB.");
+		
+	}
+	
+	@Test
+	void testRemoveEdge() throws PersonDoesNotExist, EdgeDoesNotExist, PersonAlreadyExists {
+        Person a = new Person("UniquePersonA", 30, 0.5f);
+        Person b = new Person("UniquePersonB", 35, 0.6f);
+		sg.addVertex(a);
+		sg.addVertex(b);
+		sg.addEdge(a, b);
+		sg.removeEdge(a, b);
+		
+		assertFalse(a.getContacts().contains(b) && b.getContacts().contains(a), "Edge between UniquePersonA and UniquePersonB should be removed.");
+	}
+	
+	@Test
+	void testSearchBFS() throws PersonDoesNotExist, PersonAlreadyExists {
+		Person start = new Person("UniquePersonA", 30, 0.5f);
+		Person target = new Person("UniquePersonB", 35, 0.6f);
+		sg.addVertex(start);
+		sg.addVertex(target);
+		// Assuming adding other persons and edges, as needed
+		
+		ArrayList<Person> path = sg.searchBFS(start, target);
+		assertNotNull(path, "Path should not be null.");
+		assertTrue(path.contains(target), "Path should contain the target person.");
+
+	}
+	
+	@Test
+	void testSearchDFS() throws PersonDoesNotExist, PersonAlreadyExists {
+		Person start = new Person("UniquePersonA", 30, 0.5f);
+		Person target = new Person("UniquePersonB", 35, 0.6f);
+		sg.addVertex(start);
+		sg.addVertex(target);
+		// Assuming adding other persons and edges as needed
+		
+		ArrayList<Person> path = sg.searchDFS(start, target);
+		assertNotNull(path, "Path should not be null.");
+		assertTrue(path.contains(target), "Path should contain the target person.");
+		
+	}
 
 }
