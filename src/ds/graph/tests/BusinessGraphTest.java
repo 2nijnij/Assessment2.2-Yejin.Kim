@@ -40,7 +40,7 @@ public class BusinessGraphTest {
         bg.addVertex(b1);
         bg.addVertex(b2);
 
-        Person route = new Person("Charlie", 40, 0.6f);
+        Person route = new Person("Sheldon", 40, 0.6f);
         b1.addEdge(b2, route); // Assuming addEdge method is in Business class
 
         assertTrue(b1.getEdges().containsKey(b2), "Edge should be added between businesses.");
