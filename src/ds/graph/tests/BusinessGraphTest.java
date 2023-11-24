@@ -31,4 +31,18 @@ public class BusinessGraphTest {
         bg.removeVertex(existingBusiness);
         assertFalse(bg.contains(existingBusiness), "Business should be removed from the graph.");
     }
+    
+    @Test
+    // verify an edge can be added between two businesses in the graph
+    void testAddEdge() {
+        Business b1 = new Business("TechCorp");
+        Business b2 = new Business("RetailCorp");
+        bg.addVertex(b1);
+        bg.addVertex(b2);
+
+        Person route = new Person("Charlie", 40, 0.6f);
+        b1.addEdge(b2, route); // Assuming addEdge method is in Business class
+
+        assertTrue(b1.getEdges().containsKey(b2), "Edge should be added between businesses.");
+    }
 }
