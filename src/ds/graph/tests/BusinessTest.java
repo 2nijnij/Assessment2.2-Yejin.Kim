@@ -35,6 +35,16 @@ public class BusinessTest {
 		
 		assertFalse(business.getEdges().containsKey(destination), "Edge should be removed from the business.");
 		
+	}
+	
+	@Test
+	void testGetEdges() {
+		Business destination = new Business("RetailCorp");
+		Person route = new Person("Sheldon", 40, 0.6f);
+		business.addEdge(destination, route);
+		
+		assertNotNull(business.getEdges(), "Edges map should not be null.");
+		assertEquals(1, business.getEdges().size(), "Edges map should contain one entry.");
 		
 	}
 }
