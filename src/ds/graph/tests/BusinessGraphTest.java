@@ -69,16 +69,32 @@ public class BusinessGraphTest {
         bg.addVertex(intermediateBusiness);
         bg.addVertex(destBusiness);
 
-        // Create direct connections
         Person route1 = new Person("Connector1", 30, 0.5f);
+        route1.setBusiness(intermediateBusiness);
         startBusiness.addEdge(intermediateBusiness, route1);
-
+        
         Person route2 = new Person("Connector2", 35, 0.6f);
+        route2.setBusiness(destBusiness);
         intermediateBusiness.addEdge(destBusiness, route2);
 
+        System.out.println("Edges from Start: " + startBusiness.getEdges().size());
+        System.out.println("Edges from Intermediate: " + intermediateBusiness.getEdges().size());
+
         int steps = bg.minStepsToDestFromStart(startBusiness, destBusiness);
-        int expectedSteps = 2; // Start -> Intermediate -> Destination
+        System.out.println("Calculated Steps: " + steps);
+        int expectedSteps = 2; 
         assertEquals(expectedSteps, steps, "Minimum steps to destination should match expected value.");
     }
- 
+
+    
+    @Test
+    void testIsStronglyConnected() {
+        // Set up your businesses and connections
+        Business startBusiness = new Business("StartBusiness");
+        bg.addVertex(startBusiness);
+
+        boolean isConnected = bg.isStronglyConnected(startBusiness);
+        assertTrue(isConnected, "Graph should be strongly connected from the start business.");
+    }
+
 }
