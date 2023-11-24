@@ -24,4 +24,17 @@ public class BusinessTest {
 		
 		assertTrue(business.getEdges().containsKey(destination), "Edge should be added to the business.");
 	}
+	
+	@Test
+	// check if the edge is successfully removed from the business's edges map
+	void testRemoveEdge() {
+		Business destination = new Business("RetailCorp");
+		Person route = new Person("Sheldon", 40, 0.6f);
+		business.addEdge(destination, route);
+		business.removeEdge(destination);
+		
+		assertFalse(business.getEdges().containsKey(destination), "Edge should be removed from the business.");
+		
+		
+	}
 }
