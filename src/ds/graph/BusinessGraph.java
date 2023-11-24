@@ -78,7 +78,18 @@ public class BusinessGraph {
 		        }
 		    }
 		}
-		    
+		
+		/**
+	     * Checks if a business is present in the graph.
+	     * 
+	     * @param business The business to check for.
+	     * @return true if the business is present, false otherwise.
+	     */
+	    public boolean contains(Business business) {
+	        return vertices.contains(business);
+	    }
+
+		
 		public boolean isStronglyConnected(Business start) throws IllegalArgumentException {
 		    if (start == null || !vertices.contains(start)) {
 		        throw new IllegalArgumentException("Start business does not exist in the graph.");
