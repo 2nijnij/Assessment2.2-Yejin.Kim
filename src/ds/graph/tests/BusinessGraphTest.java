@@ -22,4 +22,13 @@ public class BusinessGraphTest {
 		bg.addVertex(newBusiness);
 		assertTrue(bg.contains(newBusiness), "Business should be added to the graph.");
 	}
+	
+    @Test
+    // test if a business can be removed from the BusinessGraph class, after added
+    void testRemoveVertex() {
+        Business existingBusiness = new Business("TechCorp");
+        bg.addVertex(existingBusiness);
+        bg.removeVertex(existingBusiness);
+        assertFalse(bg.contains(existingBusiness), "Business should be removed from the graph.");
+    }
 }
