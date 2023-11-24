@@ -45,4 +45,17 @@ public class BusinessGraphTest {
 
         assertTrue(b1.getEdges().containsKey(b2), "Edge should be added between businesses.");
     }
+    
+    @Test
+    void testTotalPersonsInfected() {
+     // Assuming totalPersonsInfected calculates the total number of persons infected from a start business
+        Business startBusiness = new Business("StartBusiness");
+        bg.addVertex(startBusiness);
+     // Add connections from startBusiness that would result in infections
+
+        int totalInfected = bg.totalPersonsInfected(startBusiness);
+        int expectedInfected = 0; 
+     // Set the expected number of infected persons
+        assertEquals(expectedInfected, totalInfected, "Total number of infected persons should match expected value.");
+    }
 }
