@@ -40,12 +40,14 @@ public class PersonTest {
     }
     
     @Test
+    // test if the getters and setters for name, age, and socialHygiene work correctly
     void testSetSocialHygiene() {
         person.setSocialHygiene(0.9f);
         assertEquals(0.9f, person.getSocialHygiene(), 0.01, "Social hygiene should be updated to 0.9.");
     }
     
     @Test
+    // verify that contacts can be correctly added from a contact list
     void testAddContact() {
         Person newContact = new Person("Charlie", 40, 0.7f);
         person.addContact(newContact);
@@ -53,6 +55,7 @@ public class PersonTest {
     }
 
     @Test
+ // verify that contacts can be correctly removed from a contact list
     void testRemoveContact() {
         Person contact = new Person("Charlie", 40, 0.7f);
         person.addContact(contact);
@@ -61,6 +64,7 @@ public class PersonTest {
     }
     
     @Test
+    // check the correctness of the calculation
     void testInfectivenessCalculation() {
         float expectedInfectiveness = (30 / 100f) - (0.8f * (30 / 100f));
         assertEquals(expectedInfectiveness, person.getInfectiveness(), 0.01, 
