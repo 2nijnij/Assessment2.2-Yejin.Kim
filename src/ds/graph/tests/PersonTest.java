@@ -33,4 +33,10 @@ public class PersonTest {
         person.setAge(35);
         assertEquals(35, person.getAge(), "Age should be updated to 35.");
     }
+    
+    @Test
+    void testGetSocialHygiene() {
+        assertEquals(0.8f, person.getSocialHygiene(), 0.01, "Social hygiene should be 0.8.");
+    }
+    
 }
