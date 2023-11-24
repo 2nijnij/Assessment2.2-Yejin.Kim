@@ -28,5 +28,9 @@ public class PersonTest {
         assertEquals(30, person.getAge(), "Age should be 30.");
     }
 
-	
+    @Test
+    void testSetAge() {
+        person.setAge(35);
+        assertEquals(35, person.getAge(), "Age should be updated to 35.");
+    }
 }
