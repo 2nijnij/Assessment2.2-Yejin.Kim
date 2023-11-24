@@ -100,8 +100,18 @@ class SocialGraphTest {
 	void testAddVertex() throws PersonAlreadyExists {
 		Person newPerson = new Person("NewPerson", 25, 0.5f);
 		sg.addVertex(newPerson);
-		assertNotNull(sg.getVertex("NewPerson"), "New person should be added in the graph.");	
-
+		assertNotNull(sg.getVertex("NewPerson"), "New person should be added in the graph.");
 	}
+	
+	@Test
+	void testAddDuplicateVertexThrowsException() {
+		Person duplicatePerson = new Person("Alice", 20, 0.2f);
+		assertThrows(PersonAlreadyExists.class, () -> {
+			sg.addVertex(duplicatePerson);
+			// Attempt to add the same person repeatedly
+			sg.addVertex(duplicatePerson);
+		}, "Adding a duplicate person should throw PersonAlreadyExists exception.");
+	}
+	
 
 }
