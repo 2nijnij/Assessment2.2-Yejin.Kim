@@ -38,6 +38,8 @@ public class BusinessTest {
 	}
 	
 	@Test
+	// test if the getEdges method correctly returns the map of edges
+	// test if the map contains the correct number of entries after adding an edge
 	void testGetEdges() {
 		Business destination = new Business("RetailCorp");
 		Person route = new Person("Sheldon", 40, 0.6f);
