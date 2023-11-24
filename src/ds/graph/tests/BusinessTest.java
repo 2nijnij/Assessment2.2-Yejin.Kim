@@ -15,4 +15,13 @@ public class BusinessTest {
 		business = new Business("TechCorp");
 	}
 	
+	@Test
+	// check if an edge is correctly added
+	void testAddEdge() {
+		Business destination = new Business("RetailCorp");
+		Person route = new Person("Sheldon", 40, 0.6f);
+		business.addEdge(destination, route);
+		
+		assertTrue(business.getEdges().containsKey(destination), "Edge should be added to the business.");
+	}
 }
