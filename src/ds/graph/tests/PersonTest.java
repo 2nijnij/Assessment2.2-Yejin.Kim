@@ -39,4 +39,11 @@ public class PersonTest {
         assertEquals(0.8f, person.getSocialHygiene(), 0.01, "Social hygiene should be 0.8.");
     }
     
+    @Test
+    void testSetSocialHygiene() {
+        person.setSocialHygiene(0.9f);
+        assertEquals(0.9f, person.getSocialHygiene(), 0.01, "Social hygiene should be updated to 0.9.");
+    }
+
+    
 }
