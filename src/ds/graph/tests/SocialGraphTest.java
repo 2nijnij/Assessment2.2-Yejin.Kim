@@ -143,31 +143,23 @@ class SocialGraphTest {
 	}
 	
 	@Test
-	void testSearchBFS() throws PersonDoesNotExist, PersonAlreadyExists {
-		Person start = new Person("UniquePersonA", 30, 0.5f);
-		Person target = new Person("UniquePersonB", 35, 0.6f);
-		sg.addVertex(start);
-		sg.addVertex(target);
-		// Assuming adding other persons and edges, as needed
+	void testSearchBFS() throws PersonDoesNotExist {
+		Person start = sg.getVertex("Alice");
+		Person target = sg.getVertex("Aaron");	
 		
 		ArrayList<Person> path = sg.searchBFS(start, target);
-		assertNotNull(path, "Path should not be null.");
-		assertTrue(path.contains(target), "Path should contain the target person.");
-
+        assertNotNull(path, "Path should not be null.");
+        assertTrue(path.contains(target), "Path should contain the target person.");
 	}
 	
 	@Test
-	void testSearchDFS() throws PersonDoesNotExist, PersonAlreadyExists {
-		Person start = new Person("UniquePersonA", 30, 0.5f);
-		Person target = new Person("UniquePersonB", 35, 0.6f);
-		sg.addVertex(start);
-		sg.addVertex(target);
-		// Assuming adding other persons and edges as needed
+	void testSearchDFS() throws PersonDoesNotExist {
+		Person start = sg.getVertex("Alice");
+		Person target = sg.getVertex("Aaron");	
 		
 		ArrayList<Person> path = sg.searchDFS(start, target);
-		assertNotNull(path, "Path should not be null.");
-		assertTrue(path.contains(target), "Path should contain the target person.");
-		
-	}
+        assertNotNull(path, "Path should not be null.");
+        assertTrue(path.contains(target), "Path should contain the target person.");
+    }		
 
 }
