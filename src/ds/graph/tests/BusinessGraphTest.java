@@ -58,4 +58,27 @@ public class BusinessGraphTest {
      // Set the expected number of infected persons
         assertEquals(expectedInfected, totalInfected, "Total number of infected persons should match expected value.");
     }
+    
+    @Test
+    void testMinStepsToDestFromStart() {
+        Business startBusiness = new Business("StartBusiness");
+        Business intermediateBusiness = new Business("IntermediateBusiness");
+        Business destBusiness = new Business("DestBusiness");
+
+        bg.addVertex(startBusiness);
+        bg.addVertex(intermediateBusiness);
+        bg.addVertex(destBusiness);
+
+        // Create direct connections
+        Person route1 = new Person("Connector1", 30, 0.5f);
+        startBusiness.addEdge(intermediateBusiness, route1);
+
+        Person route2 = new Person("Connector2", 35, 0.6f);
+        intermediateBusiness.addEdge(destBusiness, route2);
+
+        int steps = bg.minStepsToDestFromStart(startBusiness, destBusiness);
+        int expectedSteps = 2; // Start -> Intermediate -> Destination
+        assertEquals(expectedSteps, steps, "Minimum steps to destination should match expected value.");
+    }
+ 
 }
